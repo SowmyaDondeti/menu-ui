@@ -10,9 +10,7 @@ class App extends Component{
       <div className="App">
         <div className="scrollmenu">
   <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
+  <a href="#menu">Menu</a>
 </div>
         <Menu/>
       </div>
