@@ -12,7 +12,7 @@ import Item from './Item';
   
   
     componentDidMount() {
-      axios.get(`https://damp-castle-80610.herokuapp.com/items/get`)
+      axios.get(`https://restaurant--menu.herokuapp.com/items/get`)
         .then(res => {
           const menuItems = res.data;
           this.setState({ menuItems });
