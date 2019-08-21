@@ -1,6 +1,10 @@
 import React from 'react';
 const itemStyle = {fontFamily: 'Comic Sans MS', fontSize: 15};
 const imageStyle = {width:200, height: 100, margin:10, border: '2px solid red'};
+const ourterContainer = {display: 'flex', flexDirection:'row', alignContent : 'center', width: 450, paddingTop: 10, border: '2px solid #106141'};
+const imageContainer = {display: 'flex', flex:1};
+const itemContainer = {display: 'flex', flex:1, flexDirection:'column'}
+
 
 class Item extends React.Component {
 
@@ -8,11 +12,11 @@ class Item extends React.Component {
         const{item:{name, description, price, pictureUrl}} = this.props;
       return (
           
-        <div style={{display: 'flex', flexDirection:'row', alignContent : 'center', width: 450, paddingTop: 10, border: '2px solid #106141'}}>
-        <div style={{display: 'flex', flex:1}}>
+        <div style={ourterContainer}>
+        <div style={imageContainer}>
         <img style = {imageStyle} src={pictureUrl} alt="new"/>
         </div>
-        <div style={{display: 'flex', flex:1, flexDirection:'column',}}>
+        <div style={itemContainer}>
         <div style = {itemStyle} > {name} ${price}</div> 
         <div style = {itemStyle} > {description}</div>
         </div>

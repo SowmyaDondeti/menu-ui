@@ -16,7 +16,7 @@ class App extends Component{
 
   constructor(props) {
     super(props);
-    this.state = {homeHoverd: false, menuHoverd: false};
+    this.state = {homeHoverd: false, menuHoverd: false, searchText:''};
   }
 
   toggleHomeHover = () =>{
@@ -27,8 +27,19 @@ class App extends Component{
     this.setState({menuHoverd: !this.state.menuHoverd})
   }
 
-  render(){
+  onClick = () => {
+console.log('button clicked');
+  }
 
+  handleInputChange = (event) => {
+    const {target:{value}} = event;
+    this.setState({searchText:value});
+    
+    }
+
+  render(){
+    const{searchText}= this.state;
+    console.log('search',searchText);
   const homeLinkStyle = this.state.homeHoverd? linkStyleHover: linkStyle;
   const menuLinkStyle = this.state.menuHoverd? linkStyleHover: linkStyle;
 
@@ -42,11 +53,11 @@ class App extends Component{
     alignContent: 'flex-end'}}>
   <Link style = {homeLinkStyle} onMouseEnter={this.toggleHomeHover} onMouseLeave={this.toggleHomeHover} to="/">Home</Link>
   <Link style = {menuLinkStyle} onMouseEnter={this.toggleMenuHover} onMouseLeave={this.toggleMenuHover}to="/menu">Menu</Link>
-  <input type="text" placeholder="Search.." ></input> 
+  <input type="text" placeholder="Search.." onChange={this.handleInputChange} />
   </div>
   <div>
   <Route path = "/" exact component={Home}/>
-  <Route path = "/menu" component= {Menu}/>
+  <Route path = "/menu" component= {()=>{return <Menu searchText = {searchText}/>}}/>
   </div>
 </Router>
 

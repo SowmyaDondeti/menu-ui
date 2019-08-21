@@ -14,7 +14,7 @@ import Item from './Item';
     componentDidMount() {
       axios.get(`https://restaurant--menu.herokuapp.com/items/get`)
         .then(res => {
-          const menuItems = res.data;
+          const menuItems =this.props.searchText !==''? res.data.filter(item =>item.name.toLowerCase().includes(this.props.searchText.toLowerCase())) : res.data;
           this.setState({ menuItems });
         })
     }
