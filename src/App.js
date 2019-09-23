@@ -2,6 +2,7 @@ import React, { Component} from "react";
 import Menu from './Menu';
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Home from './Home';
+import AddMenuItem from "./AddMenuItem";
 
 const linkStyle = { display: 'inline-block',
   color: 'white',
@@ -16,7 +17,7 @@ class App extends Component{
 
   constructor(props) {
     super(props);
-    this.state = {homeHoverd: false, menuHoverd: false, searchText:''};
+    this.state = {homeHoverd: false, menuHoverd: false,addHoverd: false};
   }
 
   toggleHomeHover = () =>{
@@ -27,8 +28,8 @@ class App extends Component{
     this.setState({menuHoverd: !this.state.menuHoverd})
   }
 
-  onClick = () => {
-console.log('button clicked');
+  toggleAddHover = () =>{
+    this.setState({addHoverd: !this.state.addHoverd})
   }
 
   handleInputChange = (event) => {
@@ -38,10 +39,9 @@ console.log('button clicked');
     }
 
   render(){
-    const{searchText}= this.state;
-    console.log('search',searchText);
   const homeLinkStyle = this.state.homeHoverd? linkStyleHover: linkStyle;
   const menuLinkStyle = this.state.menuHoverd? linkStyleHover: linkStyle;
+  const addLinkStyle = this.state.addHoverd? linkStyleHover: linkStyle;
 
 
     return(
@@ -53,11 +53,14 @@ console.log('button clicked');
     alignContent: 'flex-end'}}>
   <Link style = {homeLinkStyle} onMouseEnter={this.toggleHomeHover} onMouseLeave={this.toggleHomeHover} to="/">Home</Link>
   <Link style = {menuLinkStyle} onMouseEnter={this.toggleMenuHover} onMouseLeave={this.toggleMenuHover}to="/menu">Menu</Link>
-  <input type="text" placeholder="Search.." onChange={this.handleInputChange} />
+  <Link style = {addLinkStyle} onMouseEnter={this.toggleAddHover} onMouseLeave={this.toggleAddHover}to="/addItem">AddMenuItem</Link>
+
   </div>
   <div>
   <Route path = "/" exact component={Home}/>
-  <Route path = "/menu" component= {()=>{return <Menu searchText = {searchText}/>}}/>
+  <Route path = "/menu" exact render = {(props)=> <Menu {...props}/>}/>
+  <Route path = "/addItem" exact component={AddMenuItem}/>
+
   </div>
 </Router>
 

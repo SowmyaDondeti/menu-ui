@@ -10,7 +10,7 @@ class Home extends Component{
   <div>
   <p style = {{fontStyle: 'italic', fontWeight: 'bold', fontSize:''}}>In this website
      you can find different varieties of Indian dishes.</p>
-    <img style={{alignContent:'center', width: '100%'}}src={mainPageImage}/>
+    <img style={{alignContent:'center', width: '100%'}} src={mainPageImage} alt="mainPageImage"/>
      </div>
 </Router>
     );
